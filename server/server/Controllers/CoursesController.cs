@@ -13,20 +13,20 @@ namespace WebApplication1.Controllers
     {
         private static readonly List<Category> Categories = new List<Category>
         {
-            new Category("Camputer an AI", "https://cdn-icons-png.flaticon.com/512/3067/3067260.png"),
-            new Category("Math", "https://cdn.iconscout.com/icon/free/png-256/free-math-1963506-1657007.png?f=webp"),
-            new Category("English", "https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/english-speaking-icon.svg"),
-            new Category("Biology", "https://cdn-icons-png.freepik.com/512/1186/1186638.png"),
-            new Category("Literature", "https://static.thenounproject.com/png/3410361-200.png")
+            new Category("Camputer an AI", "assets\\categories\\coumputers.png"),
+            new Category("Math", "assets\\categories\\math.webp"),
+            new Category("English", "assets\\categories\\english.svg"),
+            new Category("Biology", "assets\\categories\\biology.png"),
+            new Category("Literature", "assets\\categories\\literature.png")
         };
 
         private static readonly List<Course> Courses = new List<Course>
        {
-          new Course("Computer Course", 1, 2, 100, DateTime.Today, new string[] { "Angular project" }, LearningMethod.Frontal, "https://www.iberdrola.com/documents/20125/42118/lifelong_746x419.jpg/a68d1b8c-dda1-2dff-27f3-20d5d0a2d30c?t=1630558685791"),
-          new Course("Mathematics Course", 2, 1, 20, DateTime.Today, new string[] { "Introduction to Algebra", "Geometry Fundamentals", "Trigonometry Basics", "Calculus Principles", "Applications of Mathematics in Real Life", "Problem-solving Techniques" }, LearningMethod.Frontal, "https://t4.ftcdn.net/jpg/04/61/65/03/360_F_461650383_vOTkFxYQ2T2kvuymieHDHbIWjghyL3DY.jpg"),
-          new Course("English Course", 3, 2, 20, new DateTime(2024, 3, 15), new string[] { "Grammar Basics", "Vocabulary Building", "Reading Comprehension", "Writing Skills", "Listening and Speaking Practice" }, LearningMethod.Frontal, "https://pop.education.gov.il/remote.axd?https://meyda.education.gov.il/files/pop/1459/banner_english_847x348-1.jpg?anchor=center&mode=crop&width=1140&height=550&rnd=131259414710000000"),
-          new Course("Biology Course", 4, 2, 20, DateTime.Today, new string[] { "Cell Biology", "Germs", "Experiments" }, LearningMethod.Zoom, "https://t3.ftcdn.net/jpg/02/40/23/36/360_F_240233680_ji4z3GpeOKjht3A2AG1wyg9XVcvdrB7R.jpg"),
-          new Course("Literature Course", 5, 5, 20, DateTime.Today, new string[] { "Text Preprocessing", "Language Modeling", "Text Classification", "Named Entity Recognition", "Machine Translation" }, LearningMethod.DiscussionBased, "https://meyda.education.gov.il/files/pop/9114/_literature.jpg")
+          new Course("Computer Course", 1, 2, 100, DateTime.Today, new string[] { "Angular project" }, LearningMethod.Frontal, "assets\\courses\\coumputers.jpg"),
+          new Course("Mathematics Course", 2, 1, 20, DateTime.Today, new string[] { "Introduction to Algebra", "Geometry Fundamentals", "Trigonometry Basics", "Calculus Principles", "Applications of Mathematics in Real Life", "Problem-solving Techniques" }, LearningMethod.Frontal, "assets\\courses\\math.jpg"),
+          new Course("English Course", 3, 2, 20, new DateTime(2024,2, 15), new string[] { "Grammar Basics", "Vocabulary Building", "Reading Comprehension", "Writing Skills", "Listening and Speaking Practice" }, LearningMethod.Frontal, "assets\\courses\\english.jpg"),
+          new Course("Biology Course", 4, 2, 20, DateTime.Today, new string[] { "Cell Biology", "Germs", "Experiments" }, LearningMethod.Zoom, "assets\\courses\\biology.jpg"),
+          new Course("Literature Course", 5, 5, 20, DateTime.Today, new string[] { "Text Preprocessing", "Language Modeling", "Text Classification", "Named Entity Recognition", "Machine Translation" }, LearningMethod.DiscussionBased, "assets\\courses\\literature.jpg")
          };
 
 
@@ -95,9 +95,10 @@ namespace WebApplication1.Controllers
             return NotFound();
         }
         [HttpGet("categories")]
-        public IActionResult GetAllCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
-            return Ok(Categories);
+
+            return Categories;
         }
     }
 }

@@ -9,7 +9,8 @@
   <div class="row mb-4">
     <div class="col-md-4">
       <label>Select Name</label>
-      <input type="text" class="form-control" placeholder="Search by Course Name" [(ngModel)]="searchCourseName" (keyup.enter)="applyFilters()">
+      <input type="text" class="form-control" placeholder="Search by Course Name" [(ngModel)]="searchCourseName"
+        (keyup.enter)="applyFilters()">
     </div>
     <div class="col-md-4">
       <label>Select Category</label>
@@ -39,8 +40,9 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ course.name }}</h5>
             <div class="learning-method">
-              <img class="learning-method-icon" [src]="getLearningMethodIcon(course.learningMethod)" alt="Learning Method Icon">
-              <p >{{ getLearningMethodName(course.learningMethod) }}</p>
+              <img class="learning-method-icon" [src]="getLearningMethodIcon(course.learningMethod)"
+                alt="Learning Method Icon">
+              <p>{{ getLearningMethodName(course.learningMethod) }}</p>
             </div>
             <button class="btn btn-primary mt-auto" (click)="showCourseDetails(course.id)">View Details</button>
             <br>
@@ -48,8 +50,8 @@
           </div>
         </div>
       </div>
-
       <div class="container py-4">
+        <button *ngIf="isLecturer()" class="btn btn-danger" (click)="AddNewCourse()">Add New Course</button>
         <h2 class="text-center mb-4">Testimonials</h2>
         <div class="row">
           <div class="col-md-6">

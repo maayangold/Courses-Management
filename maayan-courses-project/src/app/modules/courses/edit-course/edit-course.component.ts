@@ -25,11 +25,11 @@ export class EditCourseComponent implements OnInit {
     this._course = value;
     if (this.course != undefined) {
       this.courseForm = new FormGroup({
-        name: new FormControl(this.course.name, [Validators.required]),
-        categoryId: new FormControl(this.course.categoryId, [Validators.required]),
-        lecturerId: new FormControl(this.course.lecturerId, [Validators.required]),
-        numberOfLessons: new FormControl(this.course.numberOfLessons, [Validators.required]),
-        learningStart: new FormControl(this.course.learningStart, [Validators.required]),
+        coursename: new FormControl(this.course.name, [Validators.required]),
+        category: new FormControl(this.course.categoryId, [Validators.required]),
+        lecturer: new FormControl(this.course.lecturerId, [Validators.required]),
+        numberOfLessons: new FormControl(this.course?.numberOfLessons, [Validators.required]),
+        learningStart: new FormControl(this.course.learningStart.getDate, [Validators.required]),
         learningMethod: new FormControl(this.course.learningStart, [Validators.required]),
         picture: new FormControl(this.course.picture, [Validators.required]),
         syllabus: new FormControl(this.course.syllabus, [Validators.required]),
@@ -54,11 +54,14 @@ export class EditCourseComponent implements OnInit {
     console.log(this.course)
     this._courseService.getCategories().subscribe((data) => {
       this.categories = data;
+      console.log(this.categories)
     })
 
   };
 
-
+  getCategory(): Category {
+    return this.categories?.filter(c => c.id == this.course.categoryId)[0]
+  }
   saveCourse(): void {
 
     this._courseService.updateCourse(this.id, this.courseForm.value).subscribe({
@@ -77,6 +80,8 @@ export class EditCourseComponent implements OnInit {
 
 
   cancelEdit() {
+    Swal.fire({ icon: "warning", title: "Cancel...", text: "have a nice day" })
 
+    this._router.navigate(['courses/allCourses'])
   }
 }

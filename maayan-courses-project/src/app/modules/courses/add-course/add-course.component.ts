@@ -56,6 +56,7 @@ export class AddCourseComponent {
 
     if (this.courseForm.valid) {
       this.newCourse.name = this.courseForm.get('name').value;
+      this.newCourse.categoryId = this.courseForm.get('category').value;
       this.newCourse.lecturerId = this.courseForm.get('lecturer').value;
       this.newCourse.numberOfLessons = this.courseForm.get('numberOfLessons').value;
       this.newCourse.learningStart = this.courseForm.get('learningStart').value;
@@ -71,13 +72,13 @@ export class AddCourseComponent {
           Swal.fire('Success', 'Course saved successfully!', 'success');
           this._router.navigate(['/courses/allCourses']);
         },
-        (error) => {
-          Swal.fire('Error', 'An error occurred while saving the course.', 'error');
+        (err) => {
+          Swal.fire('Error', "Cant add course...", 'error');
         }
       );
     }
     else {
-      console.log("wow")
+      console.log("invalid form")
     }
   }
 }

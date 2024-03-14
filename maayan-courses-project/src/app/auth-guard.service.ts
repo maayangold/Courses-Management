@@ -9,9 +9,7 @@ export class AuthGuardService implements CanActivate {
 
   constructor() { }
   canActivate(): boolean {
-    const userType = sessionStorage.getItem('user');
     const lecturerType = sessionStorage.getItem('lecturer');
-
-    return userType !== null || lecturerType !== null;
+    return lecturerType != null;
   }
 }

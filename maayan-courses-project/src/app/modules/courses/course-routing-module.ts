@@ -10,7 +10,7 @@ import { EditCourseComponent } from "./edit-course/edit-course.component";
 const ROUTES: Route[] = [
     { path: "allCourses", component: AllCoursesComponent },
     { path: "addCourse", component: AddCourseComponent, canActivate: [AuthGuardService] },
-    { path: 'courseDetails/:id', component: CourseDetailsComponent, canActivate: [AuthGuardService] },
+    { path: 'courseDetails/:id', component: CourseDetailsComponent},
     { path: 'editCourse/:id', component: EditCourseComponent, canActivate: [AuthGuardService] },
 ]
 @NgModule({

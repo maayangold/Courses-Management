@@ -3,15 +3,15 @@
     public class Category
     {
         private static int counter = 0;
-        public int Id { get; }
-        public string Name { get; set; }
-        public string Icon { get; set; }
+        public int id { get; }
+        public string name { get; set; }
+        public string icon { get; set; }
 
         public Category(string name, string icon)
         {
-            Id = ++counter;
-            Name = name;
-            Icon = icon;
+            id = ++counter;
+            this.name = name; 
+            this.icon = icon;
         }
     }
 }

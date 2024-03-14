@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
 import { UserService } from '../user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'register',
@@ -51,18 +52,17 @@ export class RegisterComponent implements OnInit {
       } else {
         this.userAlreadyExists = false;
         this.userService.saveUserToServer(this.user).subscribe(
-          (isAdded) => {
-            if (isAdded) {
-              alert('User registered successfully!');
+          () => 
+           { Swal.fire('Success', 'user saved successfully!', 'success');
               sessionStorage.setItem("user", JSON.stringify(this.user));
               this.router.navigate(['/courses/allCourses']);
-            } else {
-              console.error('Error occurred during registration:');
+            },
+            (err) => {
+              Swal.fire('Error', err, 'error');
             }
-          }
         );
-      }
     }
   }
+}
 
 }

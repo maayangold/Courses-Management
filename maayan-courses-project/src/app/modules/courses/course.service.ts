@@ -24,7 +24,7 @@ export class CourseService {
         return this._http.put<Course>(`/api/Courses/${id}`, course);
     }
     getCategories(): Observable<Category[]> {
-        return this._http.get<Category[]>("/api/Courses/"+ `/categories`)
+        return this._http.get<Category[]>("/api/Courses/categories")
     }
 
     constructor(private _http: HttpClient) {

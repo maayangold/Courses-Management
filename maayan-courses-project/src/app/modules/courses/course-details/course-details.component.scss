@@ -1,0 +1,47 @@
+
+.learning-start {
+    animation: flash 1s infinite;
+    font-weight: bold;
+    /* Add any other styles you want to apply */
+}
+@keyframes flash {
+    0% {
+      color: #18bb84; /* Start with default color */
+    }
+    50% {
+      color: #e20013; /* Flash red */
+    }
+    100% {
+        color: #18bb84; /* Start with default color */
+    }
+  }
+  .course-picture {
+    border: 4px solid #ddd; /* Add a border around the course image */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    max-width: 100%; /* Ensure the image does not exceed its container's width */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 20px; /* Add some margin to separate from other content */
+}
+.category-icon {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    border-radius: 50%; /* Makes the icon round */
+    overflow: hidden; /* Ensure the icon fits within the round shape */
+    border: 2px solid #ccc; /* Add border around the icon */
+}
+
+.category-icon img {
+    width: 100%; /* Make sure the icon fills the container */
+    height: 100%; /* Make sure the icon fills the container */
+    object-fit: cover; /* Ensure the icon fits within the container */
+}
+
+.card-body img {
+    border: 4px solid #ddd; /* Add a border around the course image */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+.special-text {
+    font-weight: bold; /* Make the text bold */
+    font-size: 1.1em; /* Increase font size */
+}

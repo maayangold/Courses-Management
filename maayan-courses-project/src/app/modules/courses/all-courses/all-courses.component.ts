@@ -16,7 +16,7 @@ export class AllCoursesComponent implements OnInit {
   learningMethodEnum: LearningMethod[] = [LearningMethod.FRONTAL, LearningMethod.ZOOM, LearningMethod.DiscussionBased];
   selectedCategory: number = -1;
   selectedLearningMethod: string="Unknown";
-  searchCourseName: string = null;
+  searchCourseName: string = '';
 
   showLoginError = false;
 
@@ -25,18 +25,18 @@ export class AllCoursesComponent implements OnInit {
   ngOnInit(): void {
     this._courseService.getCourses().subscribe((data) => {
       this.courses = data;
-      this.filteredCourses = data;
-      console.log('filteredCourses:', this.filteredCourses);
+      this.filteredCourses = data;   
     });
     this._courseService.getCategories().subscribe(data => {
       this.categories = data;
+    //  console.log(this.categories)
     })
   }
   applyFilters(): void {
 
     this.filteredCourses = this.courses.filter(course => (+this.selectedCategory == -1 || course.categoryId == this.selectedCategory)&& (this.selectedLearningMethod.toString() == "Unknown" || course.learningMethod.toString() == this.selectedLearningMethod.toString())
     &&(course.name.toLowerCase().includes(this.searchCourseName.toLowerCase())));
-    console.log('filteredCourses:', this.filteredCourses);
+   
 
   }
 
@@ -71,9 +71,10 @@ export class AllCoursesComponent implements OnInit {
     this._router.navigate(['/courses/addCourse']);
 
   }
-  EditCourse(id: number) {
+  EditCourse(courseId: number) {
     // Navigate to the AddCourseComponent and pass the selected course as a parameter
-    this._router.navigate(['/courses/editCourse', id]);
+    alert("hi")
+    this._router.navigate(['/courses/editCourse', courseId]);
   }
   getLearningMethodName(method: LearningMethod): string {
     switch (method) {

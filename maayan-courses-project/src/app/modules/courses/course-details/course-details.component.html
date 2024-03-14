@@ -1,38 +1,38 @@
 <div class="container py-4">
     <div class="card">
-        <h2 class="text-center mb-4 text-danger">{{ course?.name }} Course:</h2>
+        <h2 class="text-center mb-4 text-danger">{{ course?.name }} :</h2>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <h3 class="card-title text-muted"> Details</h3>
-                    <p class="card-text"><strong class="text-success">Category:</strong> {{ course?.categoryId }}</p>
-                    <p class="card-text"><strong class="text-success">Lecturer:</strong> {{ course?.lecturerId }}</p>
-                    <p class="card-text"><strong class="text-success">Number of Lessons:</strong> {{
-                        course?.numberOfLessons }}</p>
+                    <p class="card-text"><strong class="text-success">Category:</strong> {{ getCategory().name }}</p>
+                    <div class="category-icon">
+                        <img [src]="getCategory().icon" alt="category Image">
+                    </div>
+                    <p class="card-text"><strong class="text-success">Number of Lessons:</strong> {{ course?.numberOfLessons }}</p>
                 </div>
                 <div class="col-md-6">
                     <h3 class="card-title text-muted">Learning Information</h3>
-                    <p class="card-text"><strong class="text-success">Learning Start:</strong> <span
-                            [ngClass]="{'text-danger': isThisWeek(course?.learningStart)}">
+                    <p class="card-text"><strong class="text-success">Starting Course :</strong> <span
+                            [ngClass]="{'learning-start': isThisWeek(), 'special-text': isThisWeek()}">
                             {{ course?.learningStart | date }}
-                        </span>
-                    <p class="card-text"><strong class="text-success">Learning Method:</strong> {{
-                        getLearningMethodName(course?.learningMethod) }}</p>
+                        </span></p>
+                    <p class="card-text"><strong class="text-success">Learning Method:</strong> {{ getLearningMethodName(course?.learningMethod) }}</p>
                 </div>
-                <img [src]="course?.picture" alt="Course Image">
-
             </div>
             <br>
-
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="card-text text-muted">Syllabus:</h3>
                     <ul class="list-unstyled">
-                        <li *ngFor="let topic of course?.syllabus" class="text-success"><i class="fas fa-circle"></i> {{
-                            topic }}</li>
+                        <li *ngFor="let topic of course?.syllabus" class="text-success"><i class="fas fa-circle"></i> {{ topic }}</li>
                     </ul>
                 </div>
-
+            </div>
+            <div class="row">
+                <div class="card-footer bg-transparent border-0"></div>
+                <img [src]="course?.picture" alt="Course Image" class="card-img-bottom img-fluid rounded-3">
+            
             </div>
         </div>
     </div>
