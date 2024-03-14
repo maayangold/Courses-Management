@@ -1,0 +1,19 @@
+/* Define styles for the learning method container */
+.learning-method {
+  display: flex;
+  align-items: center;
+}
+
+/* Define styles for the learning method icon */
+.learning-method-icon {
+  width: 40px; /* Adjust the width to your desired size */
+  height: 40px; /* Adjust the height to your desired size */
+  margin-right: 10px; /* Add some space between the icon and the learning method name */
+  border-radius: 50%; /* Make the icon circular */
+  border: 2px solid #007bff; /* Add a border around the icon */
+  padding: 5px; /* Add some padding to the icon */
+}
+
+.learning-method-name {
+  font-size: 16px; 
+}
