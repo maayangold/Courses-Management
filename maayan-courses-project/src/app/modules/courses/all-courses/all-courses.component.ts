@@ -14,9 +14,9 @@ export class AllCoursesComponent implements OnInit {
   filteredCourses: Course[];
   categories: Category[];
   learningMethodEnum: LearningMethod[] = [LearningMethod.FRONTAL, LearningMethod.ZOOM, LearningMethod.DiscussionBased];
-  selectedCategory: number = 0;
-  selectedLearningMethod: LearningMethod = null;
-  searchCourseName: string=null;
+  selectedCategory: number = -1;
+  selectedLearningMethod: string="Unknown";
+  searchCourseName: string = null;
 
   showLoginError = false;
 
@@ -33,25 +33,15 @@ export class AllCoursesComponent implements OnInit {
     })
   }
   applyFilters(): void {
-    console.log('Before filtering:');
-    console.log('selectedCategory:', this.selectedCategory);
-    console.log('selectedLearningMethod:', this.selectedLearningMethod);
-    console.log('searchCourseName:', this.searchCourseName);
-  
-    this.filteredCourses = this.courses.filter(course =>
-      (this.searchCourseName === null || course.name.toLowerCase().includes(this.searchCourseName.toLowerCase()))
-       &&
-      (this.selectedCategory === null || course.categoryId === this.selectedCategory) 
-      &&
-      (this.selectedLearningMethod === null || course.learningMethod === this.selectedLearningMethod)
-    );
-  
-    console.log('After filtering:');
+
+    this.filteredCourses = this.courses.filter(course => (+this.selectedCategory == -1 || course.categoryId == this.selectedCategory)&& (this.selectedLearningMethod.toString() == "Unknown" || course.learningMethod.toString() == this.selectedLearningMethod.toString())
+    &&(course.name.toLowerCase().includes(this.searchCourseName.toLowerCase())));
     console.log('filteredCourses:', this.filteredCourses);
+
   }
 
 
-   isLecturer(): boolean {
+  isLecturer(): boolean {
     return sessionStorage.getItem('lecturer') !== null;
   }
   getLearningMethodIcon(learningMethod: LearningMethod): string {
@@ -83,7 +73,7 @@ export class AllCoursesComponent implements OnInit {
   }
   EditCourse(id: number) {
     // Navigate to the AddCourseComponent and pass the selected course as a parameter
-    this._router.navigate(['/courses/editCourse',id] );
+    this._router.navigate(['/courses/editCourse', id]);
   }
   getLearningMethodName(method: LearningMethod): string {
     switch (method) {
