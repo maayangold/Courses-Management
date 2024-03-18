@@ -18,21 +18,25 @@
                 <option value="null" disabled selected hidden>Choose Category</option>
                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
             </select>
+            
             <ng-container *ngIf="courseForm.controls['category'].errors && courseForm.controls['category'].touched">
                 <div class="alert alert-danger" *ngIf="courseForm.controls['category'].errors['required']">Category
                     selection is required</div>
             </ng-container>
         </div>
-
         <div class="form-group">
             <label for="lecturer">Lecturer</label>
-            <input type="number" class="form-control" id="lecturer" formControlName="lecturer"
-                placeholder="Enter lecturer ID">
+            <select class="form-control" id="lecturer" formControlName="lecturer"[(ngModel)]="selectedLecturerId">
+                <option value="null" disabled selected hidden>Choose Lecturer</option>
+                <option *ngFor="let lecturer of lecturers" [value]="lecturer.id">{{ lecturer.name }}</option>
+            </select>
+            
             <ng-container *ngIf="courseForm.controls['lecturer'].errors && courseForm.controls['lecturer'].touched">
-                <div class="alert alert-danger" *ngIf="courseForm.controls['lecturer'].errors['required']">This field is
-                    required</div>
+                <div class="alert alert-danger" *ngIf="courseForm.controls['lecturer'].errors['required']">Category
+                    selection is required</div>
             </ng-container>
         </div>
+      
         <div class="form-group">
             <label for="numberOfLessons">Number of Lessons</label>
             <input type="number" class="form-control" id="numberOfLessons" formControlName="numberOfLessons"

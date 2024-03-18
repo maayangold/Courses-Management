@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-
+image:string=`assets/courses/computers.jpg`;
 }

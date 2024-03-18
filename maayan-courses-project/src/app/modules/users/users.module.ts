@@ -6,14 +6,12 @@ import { RouterModule } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { UserService } from "./user.service";
-import { LoginLecturerComponent } from "./login-lecturer/login-lecturer.component";
 import { UserRoutingModule } from "./user-routing.module";
 
 @NgModule({
     declarations:[
         LoginComponent,
         RegisterComponent,
-        LoginLecturerComponent
 
         // UserService
     ],
@@ -27,7 +25,7 @@ import { UserRoutingModule } from "./user-routing.module";
       ],
     providers:[UserService],
     exports:[LoginComponent, RegisterComponent,
-        LoginLecturerComponent],
+        ],
 })
 export class UsersModule{
 }

@@ -14,9 +14,9 @@ namespace WebApplication1.Controllers
         public static int Counter = 4;
         public static List<User> users = new List<User>
         {
-            new User { id= 1, name= "user1", address= "  בני ברק",email="user1@gmail.com",password= "111"},
-            new User{ id=2, name= "user2",address= "netanya ",email="user1@gmail.com",password= "222"},
-            new User { id= 3, name= "aaa",  address = "jerusalem" ,email="user1@gmail.com",password= "aaa"},
+            new User ("user1", "Bney-Brak","user1@gmail.com","1111"),
+            new User("user2", "Netanya ", "user2@gmail.com", "2222"),
+            new User ("aaa", "Jerusalem", "userA@gmail.com", "aaaa")
         };
 
         // GET: api/Users

@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
     {
         private static readonly List<Category> Categories = new List<Category>
         {
-            new Category("Camputer an AI", "assets\\categories\\coumputers.png"),
+            new Category("Camputer an AI", "assets\\categories\\computers.png"),
             new Category("Math", "assets\\categories\\math.webp"),
             new Category("English", "assets\\categories\\english.svg"),
             new Category("Biology", "assets\\categories\\biology.png"),
@@ -22,14 +22,19 @@ namespace WebApplication1.Controllers
 
         private static readonly List<Course> Courses = new List<Course>
        {
-          new Course("Computer Course", 1, 2, 100, DateTime.Today, new string[] { "Angular project" }, LearningMethod.Frontal, "assets\\courses\\coumputers.jpg"),
+          new Course("Computer Course", 1, 2, 100, DateTime.Today, new string[] { "Angular project" }, LearningMethod.Frontal, "assets\\courses\\computers.jpg"),
           new Course("Mathematics Course", 2, 1, 20, DateTime.Today, new string[] { "Introduction to Algebra", "Geometry Fundamentals", "Trigonometry Basics", "Calculus Principles", "Applications of Mathematics in Real Life", "Problem-solving Techniques" }, LearningMethod.Frontal, "assets\\courses\\math.jpg"),
           new Course("English Course", 3, 2, 20, new DateTime(2024,2, 15), new string[] { "Grammar Basics", "Vocabulary Building", "Reading Comprehension", "Writing Skills", "Listening and Speaking Practice" }, LearningMethod.Frontal, "assets\\courses\\english.jpg"),
           new Course("Biology Course", 4, 2, 20, DateTime.Today, new string[] { "Cell Biology", "Germs", "Experiments" }, LearningMethod.Zoom, "assets\\courses\\biology.jpg"),
-          new Course("Literature Course", 5, 5, 20, DateTime.Today, new string[] { "Text Preprocessing", "Language Modeling", "Text Classification", "Named Entity Recognition", "Machine Translation" }, LearningMethod.DiscussionBased, "assets\\courses\\literature.jpg")
+          new Course("Literature Course", 5, 3, 20, DateTime.Today, new string[] { "Text Preprocessing", "Language Modeling", "Text Classification", "Named Entity Recognition", "Machine Translation" }, LearningMethod.DiscussionBased, "assets\\courses\\literature.jpg"),
          };
 
-
+        public static List<Lecturer> Lecturers = new List<Lecturer>
+        {
+            new Lecturer ("lec1", "Bney-Brak","lec1@gmail.com","l111"),
+            new Lecturer("lec2", "Netanya ", "lec@gmail.com", "l222"),
+            new Lecturer ("lec3", "Jerusalem", "lecA@gmail.com", "l333")
+        };
 
         // GET: api/Courses
         [HttpGet]
@@ -99,6 +104,12 @@ namespace WebApplication1.Controllers
         {
 
             return Categories;
+        }
+        [HttpGet("lecturers")]
+        public IEnumerable<Lecturer> GetAllLecturers()
+        {
+
+            return Lecturers;
         }
     }
 }

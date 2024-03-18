@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Category } from '../models/category.model';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Lecturer } from '../models/lecturer.model';
 @Component({
   selector: 'add-course',
   templateUrl: './add-course.component.html',
@@ -14,6 +15,8 @@ export class AddCourseComponent {
   newCourse: Course = new Course();
   categories: Category[];
   selectedCategoryId: number = null; // Property to store the selected category
+  lecturers:Lecturer[];
+  selectedLecturerId:number=null;
   courseForm: FormGroup;
 
   constructor(private _courseService: CourseService, private _router: Router) {
@@ -27,7 +30,6 @@ export class AddCourseComponent {
       learningStart: new FormControl('', [Validators.required]),
       learningMethod: new FormControl(null, [Validators.required]),
       picture: new FormControl(basepicture, [Validators.required]),
-      syllabus: new FormControl([''], [Validators.required]),
     });
   }
 
@@ -36,6 +38,9 @@ export class AddCourseComponent {
     this._courseService.getCategories().subscribe(data => {
       this.categories = data;
     })
+    this._courseService.getLecturers().subscribe((data) => {
+      this.lecturers = data;
+    });
   }
   syllabusList: string[] = ['']; // מערך שמכיל את תיבות הקלט, מתחיל עם תיבה ריקה בהתחלה
 

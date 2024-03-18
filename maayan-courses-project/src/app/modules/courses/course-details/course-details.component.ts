@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Course, LearningMethod } from '../models/course.model';
 import { CourseService } from '../course.service';
 import { Category } from '../models/category.model';
+import { Lecturer } from '../models/lecturer.model';
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
@@ -11,7 +12,8 @@ import { Category } from '../models/category.model';
 export class CourseDetailsComponent implements OnInit {
   course: Course;
   learningMethodEnum = LearningMethod;
-  categories: Category[];
+  categories: Category[]=[];
+  lecturers:Lecturer[]=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,10 +28,13 @@ export class CourseDetailsComponent implements OnInit {
     this.courseService.getCategories().subscribe(data => {
       this.categories = data;
     })
+    this.courseService.getLecturers().subscribe((data) => {
+      this.lecturers = data;
+    });
    
   }
   getCategory(): Category {
-    return this.categories?.filter(c => c.id == this.course.categoryId)[0]
+    return this.categories?.find(c => c.id === this.course.categoryId);
   }
  
   isThisWeek(): boolean {
@@ -43,10 +48,13 @@ export class CourseDetailsComponent implements OnInit {
     var endOfWeek = new Date(today);
     endOfWeek.setDate(endOfWeek.getDate() + (6 - today.getDay()));
 
-    // Check if the learning start date falls within the current week
     var learningStartDate = new Date(this.course?.learningStart);
     return learningStartDate >= startOfWeek && learningStartDate <= endOfWeek;
 
+  }
+  getLecturerName(): string{
+    const lecturer=this.lecturers.find(l=>l.id===this.course.lecturerId);
+    return lecturer.name;
   }
   getLearningMethodName(method: LearningMethod): string {
     switch (method) {

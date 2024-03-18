@@ -5,6 +5,7 @@ import { CourseDetailsComponent } from "./course-details/course-details.componen
 import { AddCourseComponent } from "./add-course/add-course.component";
 import { AuthGuardService } from "src/app/auth-guard.service";
 import { EditCourseComponent } from "./edit-course/edit-course.component";
+import { LoginLecturerComponent } from "./login-lecturer/login-lecturer.component";
 
 
 const ROUTES: Route[] = [
@@ -12,6 +13,8 @@ const ROUTES: Route[] = [
     { path: "addCourse", component: AddCourseComponent, canActivate: [AuthGuardService] },
     { path: 'courseDetails/:id', component: CourseDetailsComponent},
     { path: 'editCourse/:id', component: EditCourseComponent, canActivate: [AuthGuardService] },
+    { path: "loginLecturer", component: LoginLecturerComponent},
+
 ]
 @NgModule({
     imports: [RouterModule.forChild(ROUTES)],

@@ -71,10 +71,9 @@ export class AllCoursesComponent implements OnInit {
     this._router.navigate(['/courses/addCourse']);
 
   }
-  EditCourse(courseId: number) {
-    // Navigate to the AddCourseComponent and pass the selected course as a parameter
-    alert("hi")
-    this._router.navigate(['/courses/editCourse', courseId]);
+  EditCourse(id: number) {
+   
+    this._router.navigate(['/courses/editCourse', id]);
   }
   getLearningMethodName(method: LearningMethod): string {
     switch (method) {

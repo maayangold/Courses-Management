@@ -1,9 +1,10 @@
 <div class="container py-4">
     <h2 class="text-center mb-4">Edit Course</h2>
-    <form [formGroup]="courseForm" (ngSubmit)="saveCourse()">
+    <form [formGroup]="courseForm">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter course name">
+            <input type="text" class="form-control" id="name" formControlName="name"
+                [value]="courseForm.get('name').value">
             <ng-container *ngIf="courseForm.controls['name'].errors && courseForm.controls['name'].touched">
                 <div class="alert alert-danger" *ngIf="courseForm.controls['name'].errors['required']">This field is
                     required</div>
@@ -14,9 +15,8 @@
 
         <div class="form-group">
             <label for="category">Category</label>
-            <select class="form-control" id="category" formControlName="category" [(ngModel)]="selectedCategoryId">
-                <option value="null" disabled selected hidden>Choose Category</option>
-                <option *ngFor="let category of categories" [value]="category.id">{{ category.icon }}</option>
+            <select class="form-control" id="category" formControlName="category">
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
             </select>
             <ng-container *ngIf="courseForm.controls['category'].errors && courseForm.controls['category'].touched">
                 <div class="alert alert-danger" *ngIf="courseForm.controls['category'].errors['required']">Category
@@ -26,11 +26,13 @@
 
         <div class="form-group">
             <label for="lecturer">Lecturer</label>
-            <input type="number" class="form-control" id="lecturer" formControlName="lecturer"
-                placeholder="Enter lecturer ID">
+            <select class="form-control" id="lecturer" formControlName="lecturer">
+                <option *ngFor="let lecturer of lecturers" [value]="lecturer.id">{{ lecturer.name }}</option>
+            </select>
+
             <ng-container *ngIf="courseForm.controls['lecturer'].errors && courseForm.controls['lecturer'].touched">
-                <div class="alert alert-danger" *ngIf="courseForm.controls['lecturer'].errors['required']">This field is
-                    required</div>
+                <div class="alert alert-danger" *ngIf="courseForm.controls['lecturer'].errors['required']">Lecturer
+                    selection is required</div>
             </ng-container>
         </div>
         <div class="form-group">
@@ -56,8 +58,8 @@
 
         <div class="form-group">
             <label for="learningMethod">Learning Method</label>
-            <select class="form-control" id="learningMethod" formControlName="learningMethod">
-                <option value="null" disabled selected hidden>Choose Learning Method</option>
+            <select class="form-control" id="learningMethod" formControlName="learningMethod"
+                [value]="courseForm.get('learningMethod').value">
                 <option [ngValue]="1">Frontal</option>
                 <option [ngValue]="2">Zoom</option>
                 <option [ngValue]="3">Discussion-Based</option>
@@ -78,12 +80,17 @@
                     required</div>
             </ng-container>
         </div>
-
-
         <br>
-        <button type="submit" class="btn btn-primary"(click)="saveCourse()">Save Changes</button>
+        <div class="form-group">
+            <label for="syllabus">Syllabus</label>
+            <ng-container *ngFor="let input of syllabusList; let i = index">
+                <input id="syl" [value]="input" class="form-control" (change)="onInput($event, i)">
+                <div class="alert alert-danger" *ngIf="syllabusList.length < 2">At least one syllabus item is required
+                </div>
+            </ng-container>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="saveCourse()">Save Changes</button>
         <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
     </form>
 </div>
-
-

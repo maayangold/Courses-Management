@@ -51,6 +51,6 @@ export class LoginComponent implements OnInit {
   lecturerEntering() {
     const username = this.userForm.get('name')?.value;
     const password = this.userForm.get('password')?.value;
-    this.router.navigate(['/users/loginLecturer'], { queryParams: { username: username, password: password } });
+    this.router.navigate(['/courses/loginLecturer'], { queryParams: { username: username, password: password } });
   }
 }

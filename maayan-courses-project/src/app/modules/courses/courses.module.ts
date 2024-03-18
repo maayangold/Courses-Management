@@ -9,6 +9,7 @@ import { CourseDetailsComponent } from "./course-details/course-details.componen
 import { CourseRoutingModule } from "./course-routing-module";
 import { AddCourseComponent } from "./add-course/add-course.component";
 import { EditCourseComponent } from "./edit-course/edit-course.component";
+import { LoginLecturerComponent } from "./login-lecturer/login-lecturer.component";
 
 
 
@@ -18,7 +19,8 @@ import { EditCourseComponent } from "./edit-course/edit-course.component";
        AllCoursesComponent,
        CourseDetailsComponent,
        AddCourseComponent,
-       EditCourseComponent
+       EditCourseComponent,
+       LoginLecturerComponent
   
       
     ],
@@ -31,7 +33,10 @@ import { EditCourseComponent } from "./edit-course/edit-course.component";
         CourseRoutingModule,
       ],
     providers:[CourseService],
-    exports:[],
+    exports:[ AllCoursesComponent,
+      AddCourseComponent,
+      EditCourseComponent,
+      LoginLecturerComponent],
 })
 export class CourseModule{
 }

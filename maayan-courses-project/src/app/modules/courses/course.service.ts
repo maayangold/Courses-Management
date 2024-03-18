@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core"
 import { Observable, catchError, of } from "rxjs"
 import { Course } from "./models/course.model"
 import { Category } from "./models/category.model"
+import { Lecturer } from "./models/lecturer.model"
 
 @Injectable()
 export class CourseService {
@@ -25,6 +26,9 @@ export class CourseService {
     }
     getCategories(): Observable<Category[]> {
         return this._http.get<Category[]>("/api/Courses/categories")
+    }
+    getLecturers(): Observable<Lecturer[]> {
+        return this._http.get<Lecturer[]>("/api/Courses/lecturers")
     }
 
     constructor(private _http: HttpClient) {
